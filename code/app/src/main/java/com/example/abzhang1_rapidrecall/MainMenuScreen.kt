@@ -13,12 +13,13 @@ import androidx.compose.ui.Modifier
 @Composable
 fun MainMenuScreen(
     modifier: Modifier = Modifier,
-    onSummaryButtonClicked: () -> Unit,
-    onNewGameButtonClicked: () -> Unit
+    onSummaryClicked: () -> Unit,
+    onNewGameClicked: () -> Unit,
+    onAttemptLogClicked: () -> Unit
 ) {
     Column(
         modifier = modifier,
-        verticalArrangement = Arrangement.SpaceBetween,
+        verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
@@ -26,46 +27,24 @@ fun MainMenuScreen(
             style = MaterialTheme.typography.headlineSmall
         )
         Row(
-            modifier = modifier
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            NewGameButton(
-                modifier = modifier,
-                onClick = onNewGameButtonClicked
-            )
-            SummaryButton(
-                modifier = modifier,
-                onClick = onSummaryButtonClicked
-            )
+            Button(
+                onClick = onNewGameClicked
+            ) {
+                Text("New Game")
+            }
+            Button(
+                onClick = onSummaryClicked
+            ) {
+                Text("Gameplay Summary")
+            }
+            Button(
+                onClick = onAttemptLogClicked
+            ) {
+                Text("Attempt Log")
+            }
         }
-    }
-}
-
-@Composable
-fun SummaryButton(
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier
-) {
-    Button(
-        modifier = modifier,
-        onClick = onClick
-    ) {
-        Text(
-            text = "Gameplay Summary"
-        )
-    }
-}
-
-@Composable
-fun NewGameButton(
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier
-) {
-    Button(
-        modifier = modifier,
-        onClick = onClick
-    ) {
-        Text(
-            text = "New Game"
-        )
     }
 }

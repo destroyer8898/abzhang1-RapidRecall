@@ -20,29 +20,31 @@ import kotlin.math.roundToInt
 
 @Composable
 fun SelectLengthScreen(
-    onStartGameButtonClicked: () -> Unit,
+    onStartGameClicked: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
     var selectedLength by remember { mutableIntStateOf(1) }
 
     Column(
         modifier = modifier,
-        verticalArrangement = Arrangement.SpaceBetween,
+        verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Choose below how long the sequence you need to remember will be!",
+            text = "Choose below how long the sequence you need to remember will be.",
             style = MaterialTheme.typography.headlineSmall
         )
         LengthSelector(
-            selectedLength = 1,
-            onLengthSelected = {
-
+            selectedLength = selectedLength,
+            onLengthSelected = { newLength ->
+                selectedLength = newLength
             }
         )
-        StartGameButton(
-            onClick = onStartGameButtonClicked
-        )
+        Button(
+            onClick = { onStartGameClicked(selectedLength) },
+        ) {
+            Text("Start Game")
+        }
     }
 }
 
@@ -64,21 +66,6 @@ fun LengthSelector(
             onValueChange = { onLengthSelected(it.roundToInt()) },
             valueRange = 1f..10f,
             steps = 8
-        )
-    }
-}
-
-@Composable
-fun StartGameButton(
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier
-) {
-    Button(
-        modifier = modifier,
-        onClick = onClick
-    ) {
-        Text(
-            text = "New Game"
         )
     }
 }

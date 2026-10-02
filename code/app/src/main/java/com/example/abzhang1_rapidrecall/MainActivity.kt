@@ -14,6 +14,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.abzhang1_rapidrecall.ui.theme.Abzhang1RapidRecallTheme
 
 class MainActivity : ComponentActivity() {
+    /*
+    * Initializes the application!
+    * */
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
